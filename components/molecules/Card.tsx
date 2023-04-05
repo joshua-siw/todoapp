@@ -1,19 +1,26 @@
-import * as React from 'react';
-import { Avatar, Button, Card as ListCard, Text } from 'react-native-paper';
+import * as React from "react";
+import {
+  Avatar,
+  Button,
+  Card as ListCard,
+  TextInput,
+} from "react-native-paper";
+import Text from "../atoms/Text";
+import { DatePicker } from "./DatePicker";
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+interface CardProps {
+  title: string;
+}
 
-const Card = (props: { title: String; }) => (
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+
+const Card = ({ title }) => (
   <ListCard>
-    <ListCard.Title title={props.title} subtitle="Card Subtitle" left={LeftContent} />
+    <ListCard.Title title={title} subtitle="Card Subtitle" left={LeftContent} />
     <ListCard.Content>
-      <Text variant="titleLarge">Card title</Text>
-      <Text variant="bodyMedium">Card content</Text>
+      <TextInput label="s" />
+      <DatePicker></DatePicker>
     </ListCard.Content>
-    <ListCard.Cover source={{ uri: 'https://picsum.photos/700' }} />
-    <ListCard.Actions>
-        props.action
-    </ListCard.Actions>
   </ListCard>
 );
 
