@@ -1,12 +1,23 @@
-import * as React from 'react';
-import { List } from 'react-native-paper';
+import * as React from "react";
+import { Pressable } from "react-native";
+import { List } from "react-native-paper";
+import Badge from "./Badge";
 
-const ListItem = () => (
-  <List.Item
-    title="First Item"
-    description="Item description"
-    left={props => <List.Icon {...props} icon="folder" />}
-  />
+interface ListItemProps {
+  title: string;
+  description: string;
+}
+const onPress = ({ navigation }) => {
+  navigation.navigate("Details");
+};
+const ListItem = ({ title, description, icon }) => (
+  <Pressable onPress={onPress}>
+    <List.Item
+      title={title}
+      description={description}
+      right={(props) => <Badge title="fs" value={4} />}
+    />
+  </Pressable>
 );
 
 export default ListItem;

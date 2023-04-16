@@ -5,8 +5,8 @@ interface TextInputProps {
   label: string;
 }
 
-const TextInput = ({ label }) => {
-  const [text, setText] = React.useState("");
+const TextInput = ({ label, text }) => {
+  // const [text, setText] = React.useState("");
 
   return (
     <Input label={label} value={text} onChangeText={(text) => setText(text)} />
