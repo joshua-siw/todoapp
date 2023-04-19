@@ -14,6 +14,23 @@ const dbConnection = () => {
   return db;
 };
 
+function deleteDB(dbName) {
+  // Define the name of the database file
+  const DB_NAME = dbName;
+
+  // Get the directory where the database is stored
+  const dbDir = `${FileSystem.documentDirectory}SQLite`;
+
+  // Define the full path to the database file
+  const dbPath = `${dbDir}/${DB_NAME}`;
+
+  // Function to delete the database file
+  function deleteDatabase() {
+    return FileSystem.deleteAsync(dbPath, { idempotent: true });
+  }
+  deleteDatabase();
+}
+
 function isTableEmpty(db) {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -36,31 +53,19 @@ function isTableEmpty(db) {
   });
 }
 
-const addDebugEntrys = (db) => {
-  isTableEmpty(db).then((isEmpty) => {
-    console.log(isEmpty);
-    if (isEmpty) {
-      db.transaction((tx) => {
-        // Prepopulate the 'todos' table with 100 entities
-        for (let i = 0; i < 100; i++) {
-          tx.executeSql(
-            "INSERT INTO todos (date, completed, task) VALUES (?, ?, ?)",
-            [`Todo ${i}`, Math.random() < 0.5 ? true : false, `Task ${i}`]
-          );
-        }
-      });
-    } else {
-      console.log("already added entrys");
-    }
+const dropTable = (db) => {
+  db.transaction((tx) => {
+    "DROP TABLE todos";
+    console.log("dropped table todos");
   });
 };
 
-function addTodoEntry(date, completed, db) {
+function addTodoEntry(date, completed, task, db) {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "INSERT INTO todos (date, completed) VALUES (?, ?)",
-        [date, completed],
+        "INSERT INTO todos (date, completed, task) VALUES (?, ?, ?)",
+        [date, completed, task],
         (_, { rowsAffected, insertId }) => {
           if (rowsAffected > 0) {
             resolve(insertId);
@@ -111,7 +116,8 @@ const checkDatabase = () => {
 export {
   dbConnection,
   checkDatabase,
-  addDebugEntrys,
   getAllTodos,
   addTodoEntry,
+  dropTable,
+  deleteDB,
 };

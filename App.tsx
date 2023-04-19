@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Alert, Button, SafeAreaView, StyleSheet, View } from "react-native";
+import { Alert, SafeAreaView, StyleSheet, View } from "react-native";
 import * as React from "react";
 import Text from "./components/atoms/Text";
 import Card from "./components/molecules/Card";
@@ -16,28 +16,32 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   dbConnection,
   checkDatabase,
-  addDebugEntrys,
   addTodoEntry,
   getAllTodos,
-} from "./functions/dbtest";
-// import createTable from "./functions/db-sevices";
-// import openDatabase from "./functions/db-sevices";
-
-// {
-//   /* <SafeAreaProvider>
-//       <View style={styles.container}>
-//         <Text variant="displayLarge" content="hello react native"></Text>
-//         <Badge value={6} title="test"></Badge>
-//         <Card title="dd"></Card>
-//         <Appbar />
-//       </View>
-//     </SafeAreaProvider> */
-// }
+  dropTable,
+  deleteDB,
+} from "./functions/db-service";
+import List2 from "./components/molecules/List2";
+import Button from "./components/atoms/Button";
+import TodoList from "./components/molecules/List2";
 
 function HomeScreen({ navigation }) {
   return (
     <View>
       <List navigation={navigation}></List>
+      <Button
+        title="hu"
+        icon="bug"
+        onPress={() => navigation.navigate("DBList")}
+      ></Button>
+    </View>
+  );
+}
+
+function DBFlatList({ navigation }) {
+  return (
+    <View>
+      <TodoList navigation={navigation} />
     </View>
   );
 }
@@ -54,17 +58,17 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   // const db = openDatabase();
   // createTable(db);
-  const db = dbConnection();
-  checkDatabase();
-  addDebugEntrys(db);
-  addTodoEntry("13", true, db);
-  getAllTodos(db)
-    .then((results) => {
-      console.log(results);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  // deleteDB("todp.db");
+  // const db = dbConnection();
+  // checkDatabase();
+  // addTodoEntry("13", true, "task", db);
+  // getAllTodos(db)
+  //   .then((results) => {
+  //     console.log(results);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -74,6 +78,7 @@ export default function App() {
           options={{ title: "Overview" }}
         />
         <Stack.Screen name="Details" component={Card} />
+        <Stack.Screen name="DBList" component={DBFlatList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
