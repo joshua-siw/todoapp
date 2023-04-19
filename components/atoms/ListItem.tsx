@@ -7,12 +7,11 @@ interface ListItemProps {
   title: string;
   description: string;
 }
-const onPress = ({ navigation }) => {
-  navigation.navigate("Details");
-};
-const ListItem = ({ title, description, icon }) => (
-  <Pressable onPress={onPress}>
+
+const ListItem = ({ title, description, icon, navigation, id }) => (
+  <Pressable onPress={() => navigation.navigate("Details")}>
     <List.Item
+      id={id}
       title={title}
       description={description}
       right={(props) => <Badge title="fs" value={4} />}

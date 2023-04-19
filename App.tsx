@@ -13,6 +13,15 @@ import ListItem from "./components/atoms/ListItem";
 import List from "./components/molecules/List";
 import { ScrollView } from "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  dbConnection,
+  checkDatabase,
+  addDebugEntrys,
+  addTodoEntry,
+  getAllTodos,
+} from "./functions/dbtest";
+// import createTable from "./functions/db-sevices";
+// import openDatabase from "./functions/db-sevices";
 
 // {
 //   /* <SafeAreaProvider>
@@ -25,27 +34,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //     </SafeAreaProvider> */
 // }
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   return (
     <View>
-      <List></List>
-    </View>
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View>
-      <Card title={"Todotask"} />
+      <List navigation={navigation}></List>
     </View>
   );
 }
 
 const Stack = createNativeStackNavigator();
 
-const clickButton = () => {
-  console.log("dd");
-};
 {
   /* <NavigationContainer>
       <SafeAreaView>
@@ -54,6 +52,19 @@ const clickButton = () => {
     </NavigationContainer> */
 }
 export default function App() {
+  // const db = openDatabase();
+  // createTable(db);
+  const db = dbConnection();
+  checkDatabase();
+  addDebugEntrys(db);
+  addTodoEntry("13", true, db);
+  getAllTodos(db)
+    .then((results) => {
+      console.log(results);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -61,8 +72,8 @@ export default function App() {
           name="Todos"
           component={HomeScreen}
           options={{ title: "Overview" }}
-         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        />
+        <Stack.Screen name="Details" component={Card} />
       </Stack.Navigator>
     </NavigationContainer>
   );

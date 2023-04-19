@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Button } from "react-native";
 import DatePicker from "react-native-date-picker";
+import Button from "../atoms/Button";
 
-export default () => {
-  const [date, setDate] = useState(new Date());
+export default ({ date, setDate }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <Button
-        title={JSON.stringify(date.getDate()) || "Open"}
         onPress={() => setOpen(true)}
+        title={undefined}
+        icon={undefined}
       />
       <DatePicker
         modal
