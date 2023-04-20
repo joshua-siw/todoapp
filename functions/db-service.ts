@@ -60,6 +60,25 @@ const dropTable = (db) => {
   });
 };
 
+function updateTodoEntry(date, completed, task, id, db) {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "UPDATE todos SET date = ?, completed = ?, task = ? WHERE id = ?",
+        [date, completed, task, id],
+        (_, { rowsAffected }) => {
+          if (rowsAffected > 0) {
+            console.log(`Todo with id ${id} was updated`);
+          } else {
+            console.log(`Could not update todo with id ${id}`);
+          }
+        },
+        (error) => console.error(error)
+      );
+    });
+  });
+}
+
 function addTodoEntry(date, completed, task, db) {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -118,6 +137,7 @@ export {
   checkDatabase,
   getAllTodos,
   addTodoEntry,
+  updateTodoEntry,
   dropTable,
   deleteDB,
 };

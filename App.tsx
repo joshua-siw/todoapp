@@ -20,6 +20,7 @@ import {
   getAllTodos,
   dropTable,
   deleteDB,
+  updateTodoEntry,
 } from "./functions/db-service";
 import List2 from "./components/molecules/List2";
 import Button from "./components/atoms/Button";
@@ -59,16 +60,30 @@ export default function App() {
   // const db = openDatabase();
   // createTable(db);
   // deleteDB("todp.db");
-  // const db = dbConnection();
+  const db = dbConnection();
   // checkDatabase();
-  // addTodoEntry("13", true, "task", db);
-  // getAllTodos(db)
-  //   .then((results) => {
-  //     console.log(results);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+  addTodoEntry("13", true, "task", db);
+  getAllTodos(db)
+    .then((results) => {
+      console.log(results);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  updateTodoEntry("1", false, "go outside", "1", db)
+    .then((success) => {
+      console.log(`Todo update was ${success ? "successful" : "unsuccessful"}`);
+    })
+    .catch((error) => {
+      console.error(`Error updating todo: ${error}`);
+    });
+  getAllTodos(db)
+    .then((results) => {
+      console.log(results);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return (
     <NavigationContainer>
       <Stack.Navigator>
