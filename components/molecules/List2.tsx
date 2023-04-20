@@ -51,6 +51,8 @@ function TodoList({ navigation }) {
                 icon={undefined}
                 navigation={navigation}
                 id={undefined}
+                completed={undefined}
+                date={undefined}
               ></ListItem>
             </View>
           ))}

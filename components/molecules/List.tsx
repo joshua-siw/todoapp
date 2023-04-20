@@ -12,6 +12,8 @@ const List = ({ navigation }) => {
         icon={"bomb"}
         navigation={navigation}
         id={"1"}
+        completed={undefined}
+        date={undefined}
       ></ListItem>
     </ScrollView>
   );
