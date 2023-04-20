@@ -8,14 +8,13 @@ interface ListItemProps {
   description: string;
 }
 
-const ListItem = ({ title, description, icon, navigation, id, key }) => (
+const ListItem = ({ title, description, icon, navigation, id }) => (
   <Pressable onPress={() => navigation.navigate("Details")}>
     <List.Item
       id={id}
       title={title}
       description={description}
       right={(props) => <Badge title="fs" value={4} />}
-      key={key}
     />
   </Pressable>
 );
