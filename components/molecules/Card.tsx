@@ -23,12 +23,12 @@ interface CardProps {
 
 const db = dbConnection();
 
-const saveTodoElement = (title: string, completed, date, id?) => {
+const saveTodoElement = (title: string, completed, date: string, id?) => {
   console.log("storing data");
   console.log(title + completed + date + id);
   if (id) {
     console.log("updating entry" + typeof id);
-    updateTodoEntry("1", false, "go outide", "1", db)
+    updateTodoEntry("1", completed, title, id, db)
       .then((success) => {
         console.log(
           `Todo update was ${success ? "successful" : "unsuccessful"}`
