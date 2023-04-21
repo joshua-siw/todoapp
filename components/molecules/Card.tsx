@@ -28,7 +28,7 @@ const saveTodoElement = (title: string, completed, date: string, id?) => {
   console.log(title + completed + date + id);
   if (id) {
     console.log("updating entry" + typeof id);
-    updateTodoEntry("1", completed, title, id, db)
+    updateTodoEntry(date, completed, title, id, db)
       .then((success) => {
         console.log(
           `Todo update was ${success ? "successful" : "unsuccessful"}`
@@ -78,7 +78,9 @@ const Card = ({ route, navigation }) => {
         <DatePicker date={dates} setDate={setDate} />
         <Button
           title={"save"}
-          onPress={() => saveTodoElement(titles, checked, dates, ids)}
+          onPress={() =>
+            saveTodoElement(titles, checked, dates.getDate().toString(), ids)
+          }
           icon={undefined}
         ></Button>
         <Button
