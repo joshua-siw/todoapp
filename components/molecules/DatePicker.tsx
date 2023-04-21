@@ -14,6 +14,7 @@ export default ({ date, setDate }) => {
       />
       <DatePicker
         modal
+        mode="date"
         open={open}
         date={date}
         onConfirm={(date) => {

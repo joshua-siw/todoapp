@@ -11,17 +11,46 @@ import storeData from "../../functions/allFunctions";
 import Button from "../atoms/Button";
 import Text from "../atoms/Text";
 import DatePicker from "./DatePicker";
-import { addTodoEntry } from "../../functions/db-service";
+import {
+  addTodoEntry,
+  dbConnection,
+  updateTodoEntry,
+} from "../../functions/db-service";
 
 interface CardProps {
   title: string;
 }
 
+const db = dbConnection();
+
 const saveTodoElement = (title: string, completed, date, id?) => {
   console.log("storing data");
+  console.log(title + completed + date + id);
   if (id) {
+    console.log("updating entry" + typeof id);
+    updateTodoEntry("1", false, "go outide", "1", db)
+      .then((success) => {
+        console.log(
+          `Todo update was ${success ? "successful" : "unsuccessful"}`
+        );
+      })
+      .catch((error) => {
+        console.error(`Error updating todo: ${error}`);
+      });
+    // updateTodoEntry(date, completed, title, id.toString(), db)
+    //   .then((success) => {
+    //     console.log(
+    //       `Todo update was ${success ? "successful" : "unsuccessful"}`
+    //     );
+    //   })
+    //   .catch((error) => {
+    //     console.error(`Error updating todo: ${error}`);
+    //   });
+    // todo update note or trigger getAllNotes reload
   } else {
-    addTodoEntry("13", true, "task", db);
+    addTodoEntry(date, completed, title, db);
+    console.log("adding db entry");
+    // todo delete note
   }
 };
 
@@ -33,7 +62,7 @@ interface todoObject {
 const LeftContent = (props) => <Avatar.Icon icon="star" {...props} />;
 
 const Card = ({ route, navigation }) => {
-  const { title, id, completed, date } = route.params;
+  const { title, ids, completed, date } = route.params;
 
   const [dates, setDate] = useState(new Date());
 
@@ -45,15 +74,15 @@ const Card = ({ route, navigation }) => {
     <ListCard>
       <ListCard.Title title={titles} />
       <ListCard.Content>
-        <TextInput label={titles} />
+        <TextInput label={titles} onChangeText={(text) => setTitle(text)} />
         <DatePicker date={dates} setDate={setDate} />
         <Button
           title={"save"}
-          onPress={() => saveTodoElement(title, completed, date)}
+          onPress={() => saveTodoElement(titles, checked, dates, ids)}
           icon={undefined}
         ></Button>
         <Button
-          onPress={() => console.log(date)}
+          onPress={() => console.log(dates)}
           title={undefined}
           icon={"bug"}
         />

@@ -25,6 +25,9 @@ import {
 import List2 from "./components/molecules/List2";
 import Button from "./components/atoms/Button";
 import TodoList from "./components/molecules/List2";
+import NotesContext from "./context/notesContext";
+import { useContext } from "react";
+import TodoContext from "./context/todoContext";
 
 function HomeScreen({ navigation }) {
   return (
@@ -57,10 +60,9 @@ const Stack = createNativeStackNavigator();
     </NavigationContainer> */
 }
 export default function App() {
-  // const db = openDatabase();
-  // createTable(db);
-  // deleteDB("todp.db");
-  // const db = dbConnection();
+  // const todos = useContext(TodoContext);
+  // console.log(todos);
+  const db = dbConnection();
   // // checkDatabase();
   // addTodoEntry("13", true, "task", db);
   // getAllTodos(db)

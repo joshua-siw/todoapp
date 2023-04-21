@@ -50,9 +50,9 @@ function TodoList({ navigation }) {
                 key={todo.id}
                 icon={undefined}
                 navigation={navigation}
-                id={undefined}
-                completed={undefined}
-                date={undefined}
+                ids={todo.id}
+                completed={todo.completed}
+                date={todo.date}
               ></ListItem>
             </View>
           ))}

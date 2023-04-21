@@ -4,7 +4,6 @@ import * as FileSystem from "expo-file-system";
 const dbConnection = () => {
   // Open the database
   const db = SQLite.openDatabase("todo.db");
-
   // Create the 'todos' table
   db.transaction((tx) => {
     tx.executeSql(

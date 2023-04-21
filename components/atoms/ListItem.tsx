@@ -13,7 +13,7 @@ const ListItem = ({
   description,
   icon,
   navigation,
-  id,
+  ids,
   completed,
   date,
 }) => (
@@ -21,14 +21,13 @@ const ListItem = ({
     onPress={() =>
       navigation.navigate("Details", {
         title,
-        id,
+        ids,
         completed,
         date,
       })
     }
   >
     <List.Item
-      id={id}
       title={title}
       description={description}
       right={(props) => <Badge title="fs" value={4} />}
