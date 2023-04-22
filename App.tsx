@@ -32,7 +32,7 @@ import TodoContext from "./context/todoContext";
 function HomeScreen({ navigation }) {
   return (
     <View>
-      <List navigation={navigation}></List>
+      <TodoList navigation={navigation} />
       <Button
         title="hu"
         icon="bug"
