@@ -21,23 +21,6 @@ function TodoList({ navigation }) {
     });
   }, []);
 
-  //   const renderItem = ({ item }) => {
-  //     return (
-  //       <ScrollView>
-  //         {todos.map((todo) => (
-  //           <ListItem
-  //             title={todo.task}
-  //             description={todo.date}
-  //             key={todo.id}
-  //             icon={undefined}
-  //             navigation={navigation}
-  //             id={undefined}
-  //           ></ListItem>
-  //         ))}
-  //       </ScrollView>
-  //     );
-  //   };
-
   return (
     <View>
       <ScrollView>
