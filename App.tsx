@@ -60,11 +60,12 @@ const Stack = createNativeStackNavigator();
     </NavigationContainer> */
 }
 export default function App() {
-  // const todos = useContext(TodoContext);
+  const todos = useContext(TodoContext);
+
   // console.log(todos);
-  const db = dbConnection();
-  // // checkDatabase();
-  // addTodoEntry("13", true, "task", db);
+  // const db = dbConnection();
+  // // // checkDatabase();
+  // // addTodoEntry("13", true, "task", db);
   // getAllTodos(db)
   //   .then((results) => {
   //     console.log(results);

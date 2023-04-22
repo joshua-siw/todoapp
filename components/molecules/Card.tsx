@@ -24,9 +24,10 @@ interface CardProps {
 
 const db = dbConnection();
 
-const deleteTodoElement = (id) => {
+const deleteTodoElement = (id, { navigation }) => {
   console.log("delete entry");
   deleteTodoEntry(id, db);
+  navigation.navigate("Todos");
 };
 
 const saveTodoElement = (title: string, completed, date: string, id?) => {
@@ -81,7 +82,7 @@ const Card = ({ route, navigation }) => {
           icon={"file"}
         ></Button>
         <Button
-          onPress={() => deleteTodoElement(ids)}
+          onPress={() => deleteTodoElement(ids, { navigation })}
           title={undefined}
           icon={"delete"}
         />
