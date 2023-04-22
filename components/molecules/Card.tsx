@@ -14,6 +14,7 @@ import DatePicker from "./DatePicker";
 import {
   addTodoEntry,
   dbConnection,
+  deleteTodoEntry,
   updateTodoEntry,
 } from "../../functions/db-service";
 
@@ -22,6 +23,11 @@ interface CardProps {
 }
 
 const db = dbConnection();
+
+const deleteTodoElement = (id) => {
+  console.log("delete entry");
+  deleteTodoEntry(id, db);
+};
 
 const saveTodoElement = (title: string, completed, date: string, id?) => {
   console.log("storing data");
@@ -37,15 +43,6 @@ const saveTodoElement = (title: string, completed, date: string, id?) => {
       .catch((error) => {
         console.error(`Error updating todo: ${error}`);
       });
-    // updateTodoEntry(date, completed, title, id.toString(), db)
-    //   .then((success) => {
-    //     console.log(
-    //       `Todo update was ${success ? "successful" : "unsuccessful"}`
-    //     );
-    //   })
-    //   .catch((error) => {
-    //     console.error(`Error updating todo: ${error}`);
-    //   });
     // todo update note or trigger getAllNotes reload
   } else {
     addTodoEntry(date, completed, title, db);
@@ -81,12 +78,12 @@ const Card = ({ route, navigation }) => {
           onPress={() =>
             saveTodoElement(titles, checked, dates.getDate().toString(), ids)
           }
-          icon={undefined}
+          icon={"file"}
         ></Button>
         <Button
-          onPress={() => console.log(dates)}
+          onPress={() => deleteTodoElement(ids)}
           title={undefined}
-          icon={"bug"}
+          icon={"delete"}
         />
         <Checkbox
           status={checked ? "checked" : "unchecked"}

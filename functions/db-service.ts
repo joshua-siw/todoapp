@@ -78,6 +78,24 @@ function updateTodoEntry(date, completed, task, id, db) {
   });
 }
 
+function deleteTodoEntry(id, db) {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "DELETE FROM todos WHERE id = ?",
+        [id],
+        (_, { rowsAffected }) => {
+          if (rowsAffected > 0) {
+            console.log(`Todo with id ${id} was deleted`);
+          } else {
+            console.log(`Could not delete todo with id ${id}`);
+          }
+        }
+      );
+    });
+  });
+}
+
 function addTodoEntry(date, completed, task, db) {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -137,6 +155,7 @@ export {
   getAllTodos,
   addTodoEntry,
   updateTodoEntry,
+  deleteTodoEntry,
   dropTable,
   deleteDB,
 };
