@@ -38,7 +38,9 @@ import AddTodoButton from "./components/atoms/AddTodoButton";
 
 function HomeScreen({ navigation }) {
   const notes = useContext(NotesContext);
-  notes.updateNotes();
+  notes.updateNotes;
+  notes.updateNotes;
+  notes.updateNotes;
   console.log(notes.notes[1]);
   return (
     <NotesProvider>
