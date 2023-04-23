@@ -16,7 +16,6 @@ import Appbar from "./components/atoms/Appbar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import ListItem from "./components/atoms/ListItem";
-import List from "./components/molecules/List";
 import { ScrollView } from "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
@@ -28,16 +27,13 @@ import {
   deleteDB,
   updateTodoEntry,
 } from "./functions/db-service";
-import List2 from "./components/molecules/List2";
 import Button from "./components/atoms/Button";
-import TodoList from "./components/molecules/List2";
+import TodoList from "./components/molecules/TodoList";
 import TodosContext, { TodosProvider } from "./context/todosContext";
 import { useContext } from "react";
 import AddTodoButton from "./components/atoms/AddTodoButton";
 
 function HomeScreen({ navigation }) {
-  const notes = useContext(TodosContext);
-  console.log(notes.todos[1]);
   return (
     <View>
       <TodoList navigation={navigation} />
