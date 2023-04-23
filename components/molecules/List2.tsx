@@ -3,7 +3,7 @@ import { View, Text, FlatList } from "react-native";
 import * as SQLite from "expo-sqlite";
 import { getAllTodos } from "../../functions/db-service";
 import { ScrollView } from "react-native-gesture-handler";
-import { List } from "react-native-paper";
+import { Divider, List } from "react-native-paper";
 import ListItem from "../atoms/ListItem";
 
 // Open the database
@@ -37,6 +37,7 @@ function TodoList({ navigation }) {
                 completed={todo.completed}
                 date={todo.date}
               ></ListItem>
+              <Divider />
             </View>
           ))}
         </View>

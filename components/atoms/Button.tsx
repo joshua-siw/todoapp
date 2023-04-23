@@ -11,7 +11,7 @@ const handlePress = ({ onPress }) => {
 };
 
 const Button = ({ onPress, title, icon }) => (
-  <AppButton icon={icon} mode="contained" onPress={() => onPress()}>
+  <AppButton icon={icon} mode="outlined" onPress={() => onPress()}>
     {title}
   </AppButton>
 );

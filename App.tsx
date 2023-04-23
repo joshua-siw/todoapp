@@ -1,5 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { Alert, SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Button as But,
+} from "react-native";
 import * as React from "react";
 import Text from "./components/atoms/Text";
 import Card from "./components/molecules/Card";
@@ -25,20 +31,30 @@ import {
 import List2 from "./components/molecules/List2";
 import Button from "./components/atoms/Button";
 import TodoList from "./components/molecules/List2";
-import NotesContext from "./context/notesContext";
+import NotesContext, { NotesProvider } from "./context/notesContext";
 import { useContext } from "react";
 import TodoContext from "./context/todoContext";
+import AddTodoButton from "./components/atoms/AddTodoButton";
 
 function HomeScreen({ navigation }) {
+  const notes = useContext(NotesContext);
+  notes.updateNotes();
+  console.log(notes.notes[1]);
   return (
-    <View>
-      <TodoList navigation={navigation} />
-      <Button
-        title="hu"
-        icon="bug"
-        onPress={() => navigation.navigate("DBList")}
-      ></Button>
-    </View>
+    <NotesProvider>
+      <View>
+        <TodoList navigation={navigation} />
+        <Text variant={undefined} content={undefined}></Text>
+        <But
+          title="+"
+          onPress={() =>
+            navigation.navigate("Details", {
+              title: "i",
+            })
+          }
+        />
+      </View>
+    </NotesProvider>
   );
 }
 
@@ -60,45 +76,28 @@ const Stack = createNativeStackNavigator();
     </NavigationContainer> */
 }
 export default function App() {
-  const todos = useContext(TodoContext);
-
-  // console.log(todos);
-  // const db = dbConnection();
-  // // // checkDatabase();
-  // // addTodoEntry("13", true, "task", db);
-  // getAllTodos(db)
-  //   .then((results) => {
-  //     console.log(results);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // updateTodoEntry("1", false, "go outside", "1", db)
-  //   .then((success) => {
-  //     console.log(`Todo update was ${success ? "successful" : "unsuccessful"}`);
-  //   })
-  //   .catch((error) => {
-  //     console.error(`Error updating todo: ${error}`);
-  //   });
-  // getAllTodos(db)
-  //   .then((results) => {
-  //     console.log(results);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+  const db = dbConnection();
+  getAllTodos(db)
+    .then((results) => {
+      console.log(results);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Todos"
-          component={HomeScreen}
-          options={{ title: "Overview" }}
-        />
-        <Stack.Screen name="Details" component={Card} />
-        <Stack.Screen name="DBList" component={DBFlatList} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <NotesProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Todos"
+            component={HomeScreen}
+            options={{ title: "Overview" }}
+          />
+          <Stack.Screen name="Details" component={Card} />
+          <Stack.Screen name="DBList" component={DBFlatList} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </NotesProvider>
   );
 }
 

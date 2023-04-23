@@ -1,27 +1,39 @@
 import * as React from "react";
-import { Button as AppButton } from "react-native-paper";
+import { Pressable, StyleSheet } from "react-native";
 
-const AddTodoButton = ({ onPress }) => (
-  <AppButton
-    style={{ height: 50, width: 50, marginTop: 10 }}
-    icon="plus"
-    mode="outlined"
-    onPress={() => onPress()}
-    children={""}
-  ></AppButton>
-);
+const AddTodoButton = ({ onPress }) => {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        {
+          backgroundColor: pressed ? "rgb(210, 230, 255)" : "white",
+        },
+        styles.wrapperCustom,
+      ]}
+    ></Pressable>
+  );
+};
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
   },
-  floatinBtn: {
-    position: "absolute",
-    bottom: 10,
-    right: 10,
+  text: {
+    fontSize: 16,
   },
-};
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6,
+  },
+  logBox: {
+    padding: 20,
+    margin: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "#f0f0f0",
+    backgroundColor: "#f9f9f9",
+  },
+});
 
 export default AddTodoButton;

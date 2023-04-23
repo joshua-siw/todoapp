@@ -30,7 +30,7 @@ const ListItem = ({
     <List.Item
       title={title}
       description={description}
-      right={(props) => <Badge title="fs" value={4} />}
+      right={(props) => <Badge date={date} />}
     />
   </Pressable>
 );
