@@ -8,10 +8,10 @@ const AddTodoButton = ({ onPress }) => (
 
 const styles = StyleSheet.create({
   fab: {
-    position: "absolute",
-    margin: 50,
+    position: "relative",
+    margin: 16,
     right: 0,
-    bottom: -475,
+    bottom: 0,
   },
 });
 

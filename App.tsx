@@ -81,7 +81,7 @@ export default function App() {
           <Stack.Screen
             name="Todos"
             component={HomeScreen}
-            options={{ title: "Overview" }}
+            options={{ title: "Todo's" }}
           />
           <Stack.Screen name="Details" component={Card} />
           <Stack.Screen name="DBList" component={DBFlatList} />

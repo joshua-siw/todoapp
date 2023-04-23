@@ -29,7 +29,7 @@ const ListItem = ({
   >
     <List.Item
       title={title}
-      description={description}
+      description={undefined}
       right={(props) => <Badge date={date} />}
     />
   </Pressable>

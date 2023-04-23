@@ -18,6 +18,7 @@ import {
   updateTodoEntry,
 } from "../../functions/db-service";
 import TodosContext from "../../context/todosContext";
+import { View } from "react-native";
 
 interface CardProps {
   title: string;
@@ -67,6 +68,10 @@ interface todoObject {
 
 const LeftContent = (props) => <Avatar.Icon icon="star" {...props} />;
 
+const daysLeft = ({ date }) => {
+  console.log(date.getDate());
+};
+
 const Card = ({ route, navigation }) => {
   const todosContext = useContext(TodosContext);
   const { title, ids, completed, date } = route.params;
@@ -82,7 +87,17 @@ const Card = ({ route, navigation }) => {
       <ListCard.Title title={titles} />
       <ListCard.Content>
         <TextInput label={titles} onChangeText={(text) => setTitle(text)} />
+        <View style={{ flexDirection: "row-reverse" }}>
+          <Checkbox
+            status={checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setChecked(!checked);
+            }}
+          />
+          <Text content={"Completed"} variant={"headlineSmall"} />
+        </View>
         <DatePicker date={dates} setDate={setDate} />
+
         <Button
           title={"save"}
           onPress={() =>
@@ -98,15 +113,14 @@ const Card = ({ route, navigation }) => {
         ></Button>
         <Button
           onPress={() => deleteTodoElement(ids, { navigation }, todosContext)}
-          title={undefined}
+          title={"delete"}
           icon={"delete"}
         />
-        <Checkbox
-          status={checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setChecked(!checked);
-          }}
-        />
+        <Button
+          onPress={() => daysLeft(date)}
+          title={undefined}
+          icon={"bug"}
+        ></Button>
       </ListCard.Content>
     </ListCard>
   );

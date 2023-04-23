@@ -6,7 +6,9 @@ interface BadgeProps {
   value: number;
 }
 
-const daysLeft = ({ date }) => {};
+const daysLeft = ({ date }) => {
+  console.log(date);
+};
 
 const badgeValue = ({ date }) => {};
 const Badge = ({ date }) => <InfoBadge>{date}</InfoBadge>;

@@ -11,27 +11,23 @@ function TodoList({ navigation }) {
   const todos = useContext(TodosContext);
 
   return (
-    <View>
-      <ScrollView>
-        <View>
-          {todos.todos.map((todo) => (
-            <View key={todo.id}>
-              <ListItem
-                title={todo.task}
-                description={todo.date}
-                key={todo.id}
-                icon={undefined}
-                navigation={navigation}
-                ids={todo.id}
-                completed={todo.completed}
-                date={todo.date}
-              ></ListItem>
-              <Divider />
-            </View>
-          ))}
+    <ScrollView>
+      {todos.todos.map((todo) => (
+        <View key={todo.id}>
+          <ListItem
+            title={todo.task}
+            description={todo.date}
+            key={todo.id}
+            icon={undefined}
+            navigation={navigation}
+            ids={todo.id}
+            completed={todo.completed}
+            date={todo.date}
+          ></ListItem>
+          <Divider />
         </View>
-      </ScrollView>
-    </View>
+      ))}
+    </ScrollView>
   );
 }
 
