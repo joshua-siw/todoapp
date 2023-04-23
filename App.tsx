@@ -31,32 +31,26 @@ import {
 import List2 from "./components/molecules/List2";
 import Button from "./components/atoms/Button";
 import TodoList from "./components/molecules/List2";
-import NotesContext, { NotesProvider } from "./context/notesContext";
+import TodosContext, { TodosProvider } from "./context/todosContext";
 import { useContext } from "react";
-import TodoContext from "./context/todoContext";
 import AddTodoButton from "./components/atoms/AddTodoButton";
 
 function HomeScreen({ navigation }) {
-  const notes = useContext(NotesContext);
-  notes.updateNotes;
-  notes.updateNotes;
-  notes.updateNotes;
-  console.log(notes.notes[1]);
+  const notes = useContext(TodosContext);
+  console.log(notes.todos[1]);
   return (
-    <NotesProvider>
-      <View>
-        <TodoList navigation={navigation} />
-        <Text variant={undefined} content={undefined}></Text>
-        <But
-          title="+"
-          onPress={() =>
-            navigation.navigate("Details", {
-              title: "i",
-            })
-          }
-        />
-      </View>
-    </NotesProvider>
+    <View>
+      <TodoList navigation={navigation} />
+      <Text variant={undefined} content={undefined}></Text>
+      <But
+        title="+"
+        onPress={() =>
+          navigation.navigate("Details", {
+            title: "i",
+          })
+        }
+      />
+    </View>
   );
 }
 
@@ -87,7 +81,7 @@ export default function App() {
       console.log(error);
     });
   return (
-    <NotesProvider>
+    <TodosProvider>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -99,7 +93,7 @@ export default function App() {
           <Stack.Screen name="DBList" component={DBFlatList} />
         </Stack.Navigator>
       </NavigationContainer>
-    </NotesProvider>
+    </TodosProvider>
   );
 }
 
