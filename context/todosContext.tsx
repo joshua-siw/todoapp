@@ -2,8 +2,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import * as SQLite from "expo-sqlite";
 
 export interface ITodosContext {
-  todos;
-  setTodos;
+  todos: any[];
+  setTodos: any;
   updateTodos: Function;
 }
 
@@ -36,7 +36,7 @@ export const TodosProvider = ({ children }) => {
 
   // Return the NotesContext provider with the notes state and updateNotes function
   return (
-    <TodosContext.Provider value={{ todos: todos, setTodos, updateTodos }}>
+    <TodosContext.Provider value={{ todos, setTodos, updateTodos }}>
       {children}
     </TodosContext.Provider>
   );
