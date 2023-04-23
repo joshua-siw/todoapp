@@ -37,9 +37,7 @@ function HomeScreen({ navigation }) {
   return (
     <View>
       <TodoList navigation={navigation} />
-      <Text variant={undefined} content={undefined}></Text>
-      <But
-        title="+"
+      <AddTodoButton
         onPress={() =>
           navigation.navigate("Details", {
             title: "i",

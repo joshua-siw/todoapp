@@ -7,20 +7,8 @@ import { Divider, List } from "react-native-paper";
 import ListItem from "../atoms/ListItem";
 import TodosContext from "../../context/todosContext";
 
-// Open the database
-// const db = SQLite.openDatabase("todo.db");
-
 function TodoList({ navigation }) {
   const todos = useContext(TodosContext);
-
-  // useEffect(() => {
-  //   // Get all the entries from the 'todos' table
-  //   db.transaction((tx) => {
-  //     tx.executeSql("SELECT * FROM todos", [], (_, { rows }) =>
-  //       setTodos(rows._array)
-  //     );
-  //   });
-  // }, []);
 
   return (
     <View>

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as React from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Avatar,
   Card as ListCard,
@@ -17,6 +17,7 @@ import {
   deleteTodoEntry,
   updateTodoEntry,
 } from "../../functions/db-service";
+import TodosContext from "../../context/todosContext";
 
 interface CardProps {
   title: string;
@@ -24,13 +25,20 @@ interface CardProps {
 
 const db = dbConnection();
 
-const deleteTodoElement = (id, { navigation }) => {
+const deleteTodoElement = (id, { navigation }, context) => {
   console.log("delete entry");
-  deleteTodoEntry(id, db);
+  deleteTodoEntry(id, db).then();
+  context.updateTodos;
   navigation.navigate("Todos");
 };
 
-const saveTodoElement = (title: string, completed, date: string, id?) => {
+const saveTodoElement = (
+  title: string,
+  completed,
+  date: string,
+  context,
+  id?
+) => {
   console.log("storing data");
   console.log(title + completed + date + id);
   if (id) {
@@ -60,6 +68,7 @@ interface todoObject {
 const LeftContent = (props) => <Avatar.Icon icon="star" {...props} />;
 
 const Card = ({ route, navigation }) => {
+  const todosContext = useContext(TodosContext);
   const { title, ids, completed, date } = route.params;
 
   const [dates, setDate] = useState(new Date());
@@ -77,12 +86,18 @@ const Card = ({ route, navigation }) => {
         <Button
           title={"save"}
           onPress={() =>
-            saveTodoElement(titles, checked, dates.getDate().toString(), ids)
+            saveTodoElement(
+              titles,
+              checked,
+              dates.getDate().toString(),
+              todosContext,
+              ids
+            )
           }
           icon={"file"}
         ></Button>
         <Button
-          onPress={() => deleteTodoElement(ids, { navigation })}
+          onPress={() => deleteTodoElement(ids, { navigation }, todosContext)}
           title={undefined}
           icon={"delete"}
         />
