@@ -87,7 +87,7 @@ const Card = ({ route, navigation }) => {
       <ListCard.Title title={titles} />
       <ListCard.Content>
         <TextInput label={titles} onChangeText={(text) => setTitle(text)} />
-        <View style={{ flexDirection: "row-reverse" }}>
+        <View style={{ flexDirection: "row" }}>
           <Checkbox
             status={checked ? "checked" : "unchecked"}
             onPress={() => {
@@ -96,31 +96,35 @@ const Card = ({ route, navigation }) => {
           />
           <Text content={"Completed"} variant={"headlineSmall"} />
         </View>
-        <DatePicker date={dates} setDate={setDate} />
-
-        <Button
-          title={undefined}
-          onPress={() =>
-            saveTodoElement(
-              titles,
-              checked,
-              dates.toString(),
-              todosContext,
-              ids
-            )
-          }
-          icon={"file"}
-        ></Button>
-        <Button
-          onPress={() => deleteTodoElement(ids, { navigation }, todosContext)}
-          title={undefined}
-          icon={"delete"}
-        />
-        <Button
-          onPress={({ dates }) => daysLeft(dates)}
-          title={undefined}
-          icon={"bug"}
-        ></Button>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flex: 1 }}>
+            <DatePicker date={dates} setDate={setDate} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Button
+              title={undefined}
+              onPress={() =>
+                saveTodoElement(
+                  titles,
+                  checked,
+                  dates.toString(),
+                  todosContext,
+                  ids
+                )
+              }
+              icon={"file"}
+            ></Button>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Button
+              onPress={() =>
+                deleteTodoElement(ids, { navigation }, todosContext)
+              }
+              title={undefined}
+              icon={"delete"}
+            />
+          </View>
+        </View>
       </ListCard.Content>
     </ListCard>
   );
