@@ -10,7 +10,7 @@ export default ({ date, setDate }) => {
       <Button
         onPress={() => setOpen(true)}
         title={undefined}
-        icon={undefined}
+        icon={"calendar"}
       />
       <DatePicker
         modal

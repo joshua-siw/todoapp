@@ -40,7 +40,7 @@ function HomeScreen({ navigation }) {
       <AddTodoButton
         onPress={() =>
           navigation.navigate("Details", {
-            title: "i",
+            title: "",
           })
         }
       />
@@ -83,7 +83,11 @@ export default function App() {
             component={HomeScreen}
             options={{ title: "Todo's" }}
           />
-          <Stack.Screen name="Details" component={Card} />
+          <Stack.Screen
+            name="Details"
+            component={Card}
+            options={{ title: "Task" }}
+          />
           <Stack.Screen name="DBList" component={DBFlatList} />
         </Stack.Navigator>
       </NavigationContainer>

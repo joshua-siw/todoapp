@@ -1,0 +1,7 @@
+- save actual date and set date to undefined if no date is set(instead today)
+- write function which calculates remaining days fr badge
+- if date undefined dont show badge
+- if daysleft above single or double digit make badge green or something
+- style card buttons
+- style everything else
+- dont pass props to card when creating new entry or make another card compnent for new entrys

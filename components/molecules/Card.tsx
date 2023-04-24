@@ -29,7 +29,7 @@ const db = dbConnection();
 const deleteTodoElement = (id, { navigation }, context) => {
   console.log("delete entry");
   deleteTodoEntry(id, db).then();
-  context.updateTodos;
+  context.updateTodos();
   navigation.navigate("Todos");
 };
 
@@ -57,7 +57,6 @@ const saveTodoElement = (
   } else {
     addTodoEntry(date, completed, title, db);
     console.log("adding db entry");
-    // todo delete note
   }
 };
 
@@ -99,7 +98,7 @@ const Card = ({ route, navigation }) => {
         <DatePicker date={dates} setDate={setDate} />
 
         <Button
-          title={"save"}
+          title={undefined}
           onPress={() =>
             saveTodoElement(
               titles,
@@ -113,7 +112,7 @@ const Card = ({ route, navigation }) => {
         ></Button>
         <Button
           onPress={() => deleteTodoElement(ids, { navigation }, todosContext)}
-          title={"delete"}
+          title={undefined}
           icon={"delete"}
         />
         <Button
