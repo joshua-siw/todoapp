@@ -104,7 +104,7 @@ const Card = ({ route, navigation }) => {
             saveTodoElement(
               titles,
               checked,
-              dates.getDate().toString(),
+              dates.toString(),
               todosContext,
               ids
             )
