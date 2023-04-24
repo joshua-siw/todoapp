@@ -58,6 +58,7 @@ const saveTodoElement = (
     addTodoEntry(date, completed, title, db);
     console.log("adding db entry");
   }
+  context.updateTodos();
 };
 
 interface todoObject {
