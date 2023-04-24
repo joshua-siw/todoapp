@@ -76,7 +76,7 @@ const Card = ({ route, navigation }) => {
   const todosContext = useContext(TodosContext);
   const { title, ids, completed, date } = route.params;
 
-  const [dates, setDate] = useState(new Date());
+  const [dates, setDate] = useState(date ? new Date(date) : new Date());
 
   const [checked, setChecked] = useState(completed);
 
