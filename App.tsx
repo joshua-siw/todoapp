@@ -35,7 +35,7 @@ import AddTodoButton from "./components/atoms/AddTodoButton";
 
 function HomeScreen({ navigation }) {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <TodoList navigation={navigation} />
       <AddTodoButton
         onPress={() =>

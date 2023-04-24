@@ -12,21 +12,23 @@ function TodoList({ navigation }) {
 
   return (
     <ScrollView>
-      {todos.todos.map((todo) => (
-        <View key={todo.id}>
-          <ListItem
-            title={todo.task}
-            description={todo.date}
-            key={todo.id}
-            icon={undefined}
-            navigation={navigation}
-            ids={todo.id}
-            completed={todo.completed}
-            date={todo.date}
-          ></ListItem>
-          <Divider />
-        </View>
-      ))}
+      <View>
+        {todos.todos.map((todo) => (
+          <View key={todo.id}>
+            <ListItem
+              title={todo.task}
+              description={todo.date}
+              key={todo.id}
+              icon={undefined}
+              navigation={navigation}
+              ids={todo.id}
+              completed={todo.completed}
+              date={todo.date}
+            ></ListItem>
+            <Divider />
+          </View>
+        ))}
+      </View>
     </ScrollView>
   );
 }
