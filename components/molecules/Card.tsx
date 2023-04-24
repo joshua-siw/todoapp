@@ -69,7 +69,7 @@ interface todoObject {
 const LeftContent = (props) => <Avatar.Icon icon="star" {...props} />;
 
 const daysLeft = ({ date }) => {
-  console.log(date.getDate());
+  console.log(date);
 };
 
 const Card = ({ route, navigation }) => {
@@ -117,7 +117,7 @@ const Card = ({ route, navigation }) => {
           icon={"delete"}
         />
         <Button
-          onPress={() => daysLeft(date)}
+          onPress={({ dates }) => daysLeft(dates)}
           title={undefined}
           icon={"bug"}
         ></Button>
