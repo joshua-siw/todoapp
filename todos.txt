@@ -5,3 +5,5 @@
 - style card buttons
 - style everything else
 - dont pass props to card when creating new entry or make another card compnent for new entrys
+- error when title is empty or deactivate save button
+- filter for completed todos
